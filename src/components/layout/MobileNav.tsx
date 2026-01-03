@@ -1,37 +1,23 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
-  User,
   Briefcase,
-  Search,
-  FileText,
   Users,
   PlusCircle,
+  Settings,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/contexts/AuthContext';
 
-const fresherNavItems = [
-  { icon: LayoutDashboard, label: 'Home', path: '/dashboard' },
-  { icon: Briefcase, label: 'Jobs', path: '/jobs' },
-  { icon: Search, label: 'Search', path: '/search' },
-  { icon: FileText, label: 'Report', path: '/talent-report' },
-  { icon: User, label: 'Profile', path: '/profile' },
-];
-
-const recruiterNavItems = [
+const navItems = [
   { icon: LayoutDashboard, label: 'Home', path: '/dashboard' },
   { icon: Users, label: 'Talent', path: '/talent-search' },
   { icon: PlusCircle, label: 'Post', path: '/post-job' },
   { icon: Briefcase, label: 'Jobs', path: '/my-jobs' },
-  { icon: User, label: 'Profile', path: '/profile' },
+  { icon: Settings, label: 'Settings', path: '/settings' },
 ];
 
 export function MobileNav() {
-  const { role } = useAuth();
   const location = useLocation();
-
-  const navItems = role === 'fresher' ? fresherNavItems : recruiterNavItems;
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border lg:hidden">
