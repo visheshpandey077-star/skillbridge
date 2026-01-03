@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://github.com/visheshpandey077-star/skillbridge-87537deb.git
+**URL**: https://lovable.dev/projects/c7d35348-fe5a-49bf-a584-417485dcc5e7
 
 ## How can I edit this code?
 
