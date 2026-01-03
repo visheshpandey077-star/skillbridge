@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**URL**: https://github.com/visheshpandey077-star/skillbridge-87537deb.git
 
 ## How can I edit this code?
 
