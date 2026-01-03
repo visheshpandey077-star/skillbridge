@@ -2,11 +2,15 @@ import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
+  User,
   Briefcase,
+  Search,
+  FileText,
   ChartBar,
   Users,
   PlusCircle,
   Settings,
+  LogOut,
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
@@ -14,7 +18,16 @@ import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 
-const navItems = [
+const fresherNavItems = [
+  { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
+  { icon: User, label: 'My Profile', path: '/profile' },
+  { icon: Briefcase, label: 'Jobs', path: '/jobs' },
+  { icon: Search, label: 'Search', path: '/search' },
+  { icon: FileText, label: 'Talent Report', path: '/talent-report' },
+  { icon: Settings, label: 'Settings', path: '/settings' },
+];
+
+const recruiterNavItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
   { icon: Users, label: 'Talent Search', path: '/talent-search' },
   { icon: PlusCircle, label: 'Post Job', path: '/post-job' },
@@ -25,8 +38,10 @@ const navItems = [
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
-  const { user } = useAuth();
+  const { role, logout, user } = useAuth();
   const location = useLocation();
+
+  const navItems = role === 'fresher' ? fresherNavItems : recruiterNavItems;
 
   return (
     <aside
@@ -94,13 +109,16 @@ export function Sidebar() {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium truncate">{user?.name || 'User'}</p>
-              <p className="text-xs text-muted-foreground capitalize">Recruiter</p>
+              <p className="text-xs text-muted-foreground capitalize">{role}</p>
             </div>
+            <Button variant="ghost" size="icon" onClick={logout} className="shrink-0">
+              <LogOut className="w-4 h-4" />
+            </Button>
           </div>
         ) : (
-          <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-semibold mx-auto">
-            {user?.name?.charAt(0).toUpperCase() || 'U'}
-          </div>
+          <Button variant="ghost" size="icon" onClick={logout} className="w-full">
+            <LogOut className="w-4 h-4" />
+          </Button>
         )}
       </div>
     </aside>
